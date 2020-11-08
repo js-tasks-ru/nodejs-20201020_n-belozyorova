@@ -12,7 +12,6 @@ app.use(async (ctx, next) => {
     try {
       await next();
     } catch(err) {
-      console.log(err);
       if (err.status) {
         ctx.status = err.status;
         ctx.body = err.message;
