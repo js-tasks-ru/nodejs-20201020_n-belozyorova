@@ -44,7 +44,9 @@ router.get('/subscribe', async (ctx, next) => {
 });
 
 async function validateMessage(ctx, next) {
-  if (ctx.request.body.message === undefined || ctx.request.body.message === '') return;
+  if (typeof ctx.request.body.message === 'undefined' || ctx.request.body.message === '') {
+    ctx.throw(400, 'Empty message');
+  }
   return next();
 }
 
