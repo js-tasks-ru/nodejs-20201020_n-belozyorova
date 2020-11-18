@@ -72,4 +72,12 @@ userSchema.methods.checkPassword = async function(password) {
   return hash === this.passwordHash;
 };
 
+userSchema.methods.verify = async function() {
+  this.verificationToken = undefined;
+}
+
+userSchema.methods.checkVerified = async function() {
+  return this.verificationToken === 'undefined';
+}
+
 module.exports = connection.model('User', userSchema);
